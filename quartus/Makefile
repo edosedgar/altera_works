@@ -5,21 +5,20 @@
 # Settings File (.qsf)
 ###################################################################
 
-PROJECT = Example-Project
-TOP_LEVEL_ENTITY = top_level
+PROJECT = Example
+TOP_LEVEL_ENTITY = countpro
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################
 # Part, Family, Boardfile DE1 or DE2
 FAMILY = "Cyclone II"
-PART = EP2C35F672C6
-BOARDFILE = DE2Pins
+PART = EP2C5T144C8
+BOARDFILE = MiniDev2Pins
 ###################################################################
 
 ###################################################################
 # Setup your sources here
-SRCS = ../fpga/top_level.v \
-       ../fpga/nios.qsys
+SRCS = ../fpga/countpro.v
 
 ###################################################################
 # Main Targets
