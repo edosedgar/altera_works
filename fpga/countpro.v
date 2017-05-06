@@ -5,24 +5,23 @@ input key;
 output [2:0] led;
 output reg [6:0] ssegment;
 output reg [3:0] scathod;
-reg [22:0] count;
+reg [20:0] count;
 reg [2:0] led;
 reg [3:0] digit[4];
 reg [16:0] dyn_indic_count;
 reg [1:0] showing_digit;
-integer i;
 
 always @(posedge sys_clk)
 begin
         count <= count + 1;
-        if (count == 22'b11_1111_1111_1111_1111_1110)
+        if (count == 22'b1111_1111_1111_1111_1110)
         begin
                 led[2] = led[2] ^ 1'b1;
-                if (digit[1] == 4'hf)
+                if (digit[1] == 4'hf && digit[2] == 4'hf && digit[3] == 4'hf)
                 begin
                         digit[0] = digit[0] + 1;
                 end
-                if (digit[2] == 4'hf)
+                if (digit[2] == 4'hf && digit[3] == 4'hf)
                 begin
                         digit[1] = digit[1] + 1;
                 end
