@@ -1,0 +1,400 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 32-bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 18:55:57  April 23, 2017
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Example_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C5T144C8
+set_global_assignment -name TOP_LEVEL_ENTITY countpro
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:55:57  APRIL 23, 2017"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+
+set_global_assignment -name SOURCE_FILE ../fpga/countpro.v
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+set_location_assignment PIN_112 -to 7segment[0]
+set_location_assignment PIN_113 -to 7segment[1]
+set_location_assignment PIN_114 -to 7segment[2]
+set_location_assignment PIN_115 -to 7segment[3]
+set_location_assignment PIN_118 -to 7segment[4]
+set_location_assignment PIN_119 -to 7segment[5]
+set_location_assignment PIN_120 -to 7segment[6]
+
+set_location_assignment PIN_135 -to 7cathod[0]
+set_location_assignment PIN_134 -to 7cathod[1]
+set_location_assignment PIN_133 -to 7cathod[2]
+set_location_assignment PIN_132 -to 7cathod[3]
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+
+
+
+
+# These are the pin assignments for the Altera Mini Board
+set_location_assignment PIN_3 -to led[0]
+set_location_assignment PIN_7 -to led[1]
+set_location_assignment PIN_9 -to led[2]
+set_location_assignment PIN_17 -to sys_clk
+set_location_assignment PIN_144 -to key
+
+set_location_assignment PIN_112 -to ssegment[0]
+set_location_assignment PIN_113 -to ssegment[1]
+set_location_assignment PIN_114 -to ssegment[2]
+set_location_assignment PIN_115 -to ssegment[3]
+set_location_assignment PIN_118 -to ssegment[4]
+set_location_assignment PIN_119 -to ssegment[5]
+set_location_assignment PIN_120 -to ssegment[6]
+
+set_location_assignment PIN_135 -to scathod[0]
+set_location_assignment PIN_134 -to scathod[1]
+set_location_assignment PIN_133 -to scathod[2]
+set_location_assignment PIN_132 -to scathod[3]
