@@ -1,12 +1,13 @@
 
 
 # These are the pin assignments for the Altera Mini Board
-set_location_assignment PIN_3 -to led[0]
-set_location_assignment PIN_7 -to led[1]
-set_location_assignment PIN_9 -to led[2]
-set_location_assignment PIN_17 -to sys_clk
+set_location_assignment PIN_3   -to led[0]
+set_location_assignment PIN_7   -to led[1]
+set_location_assignment PIN_9   -to led[2]
+set_location_assignment PIN_17  -to sys_clk
 set_location_assignment PIN_144 -to key
 
+# These are the pin assignment for the 7 segment display
 set_location_assignment PIN_112 -to ssegment[0]
 set_location_assignment PIN_113 -to ssegment[1]
 set_location_assignment PIN_114 -to ssegment[2]
@@ -14,8 +15,14 @@ set_location_assignment PIN_115 -to ssegment[3]
 set_location_assignment PIN_118 -to ssegment[4]
 set_location_assignment PIN_119 -to ssegment[5]
 set_location_assignment PIN_120 -to ssegment[6]
-
 set_location_assignment PIN_135 -to scathod[0]
 set_location_assignment PIN_134 -to scathod[1]
 set_location_assignment PIN_133 -to scathod[2]
 set_location_assignment PIN_132 -to scathod[3]
+
+# VGA connector
+set_location_assignment PIN_103 -to VSync
+set_location_assignment PIN_100 -to HSync
+set_location_assignment PIN_99  -to Rchannel
+set_location_assignment PIN_101 -to Gchannel
+set_location_assignment PIN_104 -to Bchannel
