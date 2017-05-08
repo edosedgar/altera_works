@@ -66,11 +66,13 @@ endmodule
 module vsync(
         input line_clk,
         output vsync_out,
-        output blank_out
+        output blank_out,
+        output [9:0] y_coord_out
 );
         reg [10:0] count = 10'd0;
         reg vsync  = 0;
         reg blank  = 0;
+        reg [9:0] y_coord = 0;
         localparam VSBL_AREA_LNS = 600;
         localparam FRONT_PORCH_LNS = 37;
         localparam SYNC_PULSE_LNS = 6;
@@ -88,12 +90,16 @@ module vsync(
                 blank <= (count < VSBL_AREA_LNS) ? 0 : 1;
 
         always @(posedge line_clk)
+                y_coord <= (count < VSBL_AREA_LNS) ? count : 10'b11_1111_1111;
+
+        always @(posedge line_clk)
                 vsync <= (count >= VSBL_AREA_LNS + FRONT_PORCH_LNS &&
                           count <  VSBL_AREA_LNS + FRONT_PORCH_LNS + SYNC_PULSE_LNS
                          ) ? 0 : 1;
 
         assign vsync_out  = vsync;
         assign blank_out  = blank;
+        assign y_coord_out = y_coord;
 endmodule
 
 /*
@@ -103,12 +109,14 @@ module hsync(
         input sys_clk,
         output hsync_out,
         output blank_out,
-        output newline_out
+        output newline_out,
+        output [9:0] x_coord_out
 );
         reg [10:0] count = 10'd0;
         reg hsync = 0;
         reg blank = 0;
         reg newline = 0;
+        reg [9:0] x_coord = 0;
         localparam VSBL_AREA_CLK = 800;
         localparam FRONT_PORCH_CLK = 56;
         localparam SYNC_PULSE_CLK = 120;
@@ -126,7 +134,10 @@ module hsync(
                 newline <= (count == 0) ? 1 : 0;
 
         always @(posedge sys_clk)
-                blank <= (count >= VSBL_AREA_CLK) ? 1 : 0;
+                blank <= (count < VSBL_AREA_CLK) ? 0 : 1;
+
+        always @(posedge sys_clk)
+                x_coord <= (count < VSBL_AREA_CLK) ? count : 10'b11_1111_1111;
 
         always @(posedge sys_clk)
                 hsync <= (count >= VSBL_AREA_CLK + FRONT_PORCH_CLK &&
@@ -136,29 +147,34 @@ module hsync(
         assign hsync_out    = hsync;
         assign blank_out    = blank;
         assign newline_out  = newline;
+        assign x_coord_out  = x_coord;
 endmodule
 
 /*
  * VGA component: pixel color
  */
-module color(
+module color_out(
         input sys_clk,
+        input [2:0] color,
         input blank,
         output red_out,
         output green_out,
         output blue_out
 );
-        reg [8:0] count;
+        reg red_c = 0;
+        reg green_c = 0;
+        reg blue_c = 0;
 
         always @(posedge sys_clk)
-                if (blank)
-                        count <= 0;
-                else
-                        count <= count + 1;
+        begin
+                red_c   <= !blank ? color[2] : 0;
+                green_c <= !blank ? color[1] : 0;
+                blue_c  <= !blank ? color[0] : 0;
+        end
 
-        assign red_out = count[3];
-        assign green_out = count[3];
-        assign blue_out = count[3];
+        assign red_out = red_c;
+        assign green_out = green_c;
+        assign blue_out = blue_c;
 endmodule
 
 /*
@@ -176,13 +192,26 @@ module countpro(
         output Gchannel,
         output Bchannel
 );
+        localparam C_BLUE = 3'b001;
+        localparam C_RED = 3'b100;
+        localparam C_GREEN = 3'b010;
+        localparam C_YELLOW = 3'b110;
+        localparam C_MAGENTA = 3'b011;
+        localparam C_PURPLE = 3'b101;
+        localparam C_BLACK = 3'b000;
+        localparam C_WHITE = 3'b111;
+
         reg [32:0] count;
         reg [3:0] digit[4];
+        reg [2:0] cur_color;
+        wire [9:0] xcoord;
+        wire [9:0] ycoord;
         wire line_clk, blank, hblank, vblank;
+        reg video_mem [0:99] [0:74];
 
-        hsync hs(sys_clk, HSync, hblank, line_clk);
-        vsync vs(line_clk, VSync, vblank);
-        color cg(sys_clk, blank, Rchannel, Gchannel, Bchannel);
+        hsync hs(sys_clk, HSync, hblank, line_clk, xcoord);
+        vsync vs(line_clk, VSync, vblank, ycoord);
+        color_out cg(sys_clk, cur_color, blank, Rchannel, Gchannel, Bchannel);
         display_seg4 ds(sys_clk, ssegment, scathod, digit[0], digit[1], digit[2],
                         digit[3]);
 
@@ -208,6 +237,24 @@ module countpro(
                         digit[3] = digit[3] + 1;
                         count <= 0;
                 end
+        end
+
+        always @(posedge sys_clk)
+        begin
+                //cur_color <=  ((xcoord / 8) % 2 == 0 && (ycoord / 8) % 2 == 0
+                //               && !blank) ? xcoord[2:0] : C_BLACK;
+                cur_color <= (!blank && video_mem[xcoord/8][ycoord/8]) ? C_WHITE :
+                                                                         C_BLACK;
+        end
+
+        integer i,j;
+        always @(posedge sys_clk)
+        begin
+                for (i=0; i<=74; i=i+1)
+                        for (j =0; j<=99; j=j+1)
+                        begin
+                                video_mem[j][i] = digit[1][0] ^ i*j;
+                        end
         end
 
 endmodule
