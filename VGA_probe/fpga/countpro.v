@@ -208,6 +208,10 @@ module countpro(
         wire [9:0] ycoord;
         wire line_clk, blank, hblank, vblank;
         reg video_mem [0:99] [0:74];
+        reg [6:0] startx, starty, width, height;
+        reg color, render;
+        reg [3:0] state = 0;
+        reg [63:0] count2 = 0;
 
         hsync hs(sys_clk, HSync, hblank, line_clk, xcoord);
         vsync vs(line_clk, VSync, vblank, ycoord);
@@ -237,24 +241,33 @@ module countpro(
                         digit[3] = digit[3] + 1;
                         count <= 0;
                 end
+
         end
 
         always @(posedge sys_clk)
         begin
+                count2 <= count2 + 1;
+
                 //cur_color <=  ((xcoord / 8) % 2 == 0 && (ycoord / 8) % 2 == 0
                 //               && !blank) ? xcoord[2:0] : C_BLACK;
-                cur_color <= (!blank && video_mem[xcoord/8][ycoord/8]) ? C_WHITE :
-                                                                         C_BLACK;
+                case (count2/100_000_000)
+                64'd0:
+                        cur_color <= (!blank ) ? 3'b100 : C_BLACK;
+                64'd1:
+                        cur_color <= (!blank ) ? 3'b010 : C_BLACK;
+                64'd2:
+                        cur_color <= (!blank ) ? 3'b001 : C_BLACK;
+                64'd3:
+                        cur_color <= (!blank ) ? 3'b111 : C_BLACK;
+                64'd4:
+                        cur_color <= (!blank ) ? 3'b000 : C_BLACK;
+                64'd5:
+                        cur_color <= (!blank && xcoord % 2) ? 3'b111: C_BLACK;
+                64'd6:
+                        cur_color <= (!blank && xcoord % 2 == 0 && ycoord % 2 == 0) ?
+                                      3'b111: C_BLACK;
+                64'd7:
+                        count2 <= 0;
+                endcase
         end
-
-        integer i,j;
-        always @(posedge sys_clk)
-        begin
-                for (i=0; i<=74; i=i+1)
-                        for (j =0; j<=99; j=j+1)
-                        begin
-                                video_mem[j][i] = digit[1][0] ^ i*j;
-                        end
-        end
-
 endmodule
