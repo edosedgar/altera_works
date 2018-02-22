@@ -6,7 +6,7 @@
 ###################################################################
 
 PROJECT = lab1
-TOP_LEVEL_ENTITY = countpro
+TOP_LEVEL_ENTITY = VCB4RE
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################
@@ -18,7 +18,7 @@ BOARDFILE = MiniDev2Pins
 
 ###################################################################
 # Setup your sources here
-SRCS = ../fpga/countpro.v
+SRCS = ../fpga/VCB4Re.v
 
 ###################################################################
 # Main Targets

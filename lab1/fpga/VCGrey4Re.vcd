@@ -1,0 +1,145 @@
+$date
+	Thu Feb 22 04:06:21 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module test $end
+$var wire 4 ! out [3:0] $end
+$var wire 1 " TC $end
+$var wire 1 # CEO $end
+$var reg 1 $ R $end
+$var reg 1 % ce $end
+$var reg 1 & clk $end
+$scope module counter $end
+$var wire 1 # CEO $end
+$var wire 1 % ce $end
+$var wire 1 $ r $end
+$var wire 1 & sys_clk $end
+$var wire 4 ' Y [3:0] $end
+$var wire 1 " TC $end
+$var reg 5 ( q [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+0&
+1%
+0$
+0#
+0"
+b0 !
+$end
+#1
+b1 !
+b1 '
+b11 (
+1&
+#2
+0&
+#3
+b11 !
+b11 '
+b110 (
+1&
+#4
+0&
+#5
+b10 !
+b10 '
+b101 (
+1&
+#6
+0&
+#7
+b110 !
+b110 '
+b1100 (
+1&
+#8
+0&
+#9
+b111 !
+b111 '
+b1111 (
+1&
+#10
+0&
+#11
+b101 !
+b101 '
+b1010 (
+1&
+#12
+0&
+#13
+b100 !
+b100 '
+b1001 (
+1&
+#14
+0&
+#15
+b1100 !
+b1100 '
+b11000 (
+1&
+#16
+0&
+#17
+b1101 !
+b1101 '
+b11011 (
+1&
+#18
+0&
+#19
+b1111 !
+b1111 '
+b11110 (
+1&
+#20
+0&
+#21
+b1110 !
+b1110 '
+b11101 (
+1&
+#22
+0&
+#23
+b1010 !
+b1010 '
+b10100 (
+1&
+#24
+0&
+#25
+b1011 !
+b1011 '
+b10111 (
+1&
+#26
+0&
+#27
+b1001 !
+b1001 '
+b10010 (
+1&
+#28
+0&
+#29
+1#
+b1000 !
+b1000 '
+1"
+b10001 (
+1&
+#30
+0&
