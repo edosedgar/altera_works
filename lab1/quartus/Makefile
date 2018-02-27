@@ -6,7 +6,7 @@
 ###################################################################
 
 PROJECT = lab1
-TOP_LEVEL_ENTITY = VCB4RE
+TOP_LEVEL_ENTITY = counter_mix
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################
@@ -18,7 +18,8 @@ BOARDFILE = MiniDev2Pins
 
 ###################################################################
 # Setup your sources here
-SRCS = ../fpga/VCB4Re.v
+SRCS = ../fpga/counter_mix.v ../fpga/VCBDmSE.v ../fpga/seven_seg.v \
+       ../fpga/VCBmCLED.v ../fpga/VCD4RE.v ../fpga/VCJmRE.v
 
 ###################################################################
 # Main Targets
@@ -45,7 +46,7 @@ smart: smart.log
 
 MAP_ARGS = --read_settings_files=on $(addprefix --source=,$(SRCS))
 
-FIT_ARGS = --part=$(PART) --read_settings_files=on
+FIT_ARGS = --optimize_io_register_for_timing=off --part=$(PART) --read_settings_files=on
 ASM_ARGS =
 STA_ARGS =
 

@@ -18,7 +18,8 @@ begin
         if (clr)
                 Q <= 0;
         else
-                Q <= L ? di : (up & ce) ? Q + 1 : (!up & ce) ? Q - 1 : Q;
+                Q <= L ? di : (up & ce) ? Q + 4'd1 :
+                              (!up & ce) ? Q - 4'd1 : Q;
 end
 
 endmodule
