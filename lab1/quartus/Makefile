@@ -6,7 +6,7 @@
 ###################################################################
 
 PROJECT = lab1
-TOP_LEVEL_ENTITY = counter_mix
+TOP_LEVEL_ENTITY = freq_counter
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################
@@ -19,7 +19,9 @@ BOARDFILE = MiniDev2Pins
 ###################################################################
 # Setup your sources here
 SRCS = ../fpga/counter_mix.v ../fpga/VCBDmSE.v ../fpga/seven_seg.v \
-       ../fpga/VCBmCLED.v ../fpga/VCD4RE.v ../fpga/VCJmRE.v
+       ../fpga/VCBmCLED.v ../fpga/VCD4RE.v ../fpga/VCJmRE.v \
+       ../fpga/VCBmCLED_dec.v ../fpga/dec_counter.v ../fpga/chatter_button.v \
+       ../fpga/freq_counter.v ../fpga/Gen_Nms_1s.v ../fpga/bin2BCD.v
 
 ###################################################################
 # Main Targets

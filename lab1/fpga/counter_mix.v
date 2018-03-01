@@ -5,7 +5,7 @@ output wire [6:0] ssegment;
 output wire [3:0] scathod;
 output reg [2:0] led = 3'b111;
 
-reg [18:0] count = 0;
+reg [19:0] count = 0;
 reg div_clk = 0;
 wire [15:0] digit;
 wire [3:0] CEO;
@@ -26,7 +26,7 @@ begin
         ce <= 1'b1;
         up <= 1'b1;
         count <= count + 1'b1;
-        if (count == 18'b11_1111_1111_1111_1111)
+        if (count == 20'b1111_1111_1111_1111_1111)
         begin
                 div_clk <= div_clk ^ 1'b1;
         end
