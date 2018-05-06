@@ -4,13 +4,13 @@ Peripheral terminal description
 This Verilog project implements basic protocol to communicate with
 the FPGA over UART interface.
 
-**Request**:
+**Request**::
 
   [Command][Length][Base address][Payload][CRC-16]
 
 Payload is transmitted if **command** is not read-based
 
-**Answer**:
+**Answer**::
 
   [Command][Length][Base address][Payload][CRC-16]
 
@@ -23,7 +23,7 @@ The terminal proccesses the following commands:
 * 0x01 - Write Payload To MMC Memory
 * 0x81 - Read Payload from MMC Memory
 
-The registers set is quite simple:
+The registers set to be accessed is quite small::
 
   BASE ADDRESS + 0x0000 => LED[7:0]
 
@@ -33,15 +33,14 @@ The registers set is quite simple:
 
   BASE ADDRESS + 0x0003 => Button[3:0]
 
-To calculate the next address to be used it is required to calculate one
-according to the following rule:
+The range of address to be covered is calculated in the following way:
 
   ADDRESS = BASE ADDRESS + (0..Length)
 
 Usage
 ~~~~~~
 
-Now you can create and build your project by::
+To build project::
 
   user$: make -C quartus
 
