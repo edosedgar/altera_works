@@ -4,10 +4,16 @@
 This Verilog project implements basic protocol to communicate with
 the FPGA over UART interface.
 
-Request: [Command][Length][Base address][Payload][CRC-16]
+Request:
+
+  [Command][Length][Base address][Payload][CRC-16]
+
 Payload is transmitted if **command** is not read-based
 
-Answer: [Command][Length][Base address][Payload][CRC-16]
+Answer:
+
+  [Command][Length][Base address][Payload][CRC-16]
+
 Payload is transmitted if **command** is not write-based
 
 The terminal proccesses the following commands:
@@ -18,9 +24,13 @@ The terminal proccesses the following commands:
 * 0x81 - Read Payload from MMC Memory
 
 The registers set is quite simple:
+
   BASE ADDRESS + 0x0000 => LED[7:0]
+
   BASE ADDRESS + 0x0001 => DISP[15:8]
+
   BASE ADDRESS + 0x0002 => DISP[7:0]
+
   BASE ADDRESS + 0x0003 => Button[3:0]
 
 To calculate the next address to be used it is required to calculate one
