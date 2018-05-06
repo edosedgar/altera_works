@@ -2,13 +2,17 @@ module uart_main(
         input             sys_clk,
         input [3:0]       key,
         input             UART_RX,
+        input             SPI_MISO,
         output wire [3:0] scathod,
         output wire [6:0] ssegment,
         output wire [3:0] led,
-        output wire       UART_TX
+        output wire       UART_TX,
+        output wire       SPI_SCK,
+        output wire       SPI_MOSI,
+        output wire       SPI_SS
 );
 
-localparam MAX_BYTE      = 8'h08;
+localparam MAX_BYTE      = 8'hFF;
 localparam BASE_ADDR     = 16'h4900;
 
 // Main state machine wires and parameters
@@ -391,10 +395,14 @@ mem_reg #(.BASE_ADDRESS(BASE_ADDR)) peripheral(
         .i_address(mem_addr),
         .i_byte(mem_in),
         .i_key(key),
+        .i_spi_miso(SPI_MISO),
         .o_byte(mem_out),
         .o_digit(digit_wire),
         .o_led(led),
-        .o_ready(mem_done));
+        .o_ready(mem_done),
+        .o_spi_mosi(SPI_MOSI),
+        .o_spi_sck(SPI_SCK),
+        .o_spi_ss(SPI_SS));
 
 seven_seg digit_display(
         .i_sys_clk(sys_clk),

@@ -9,10 +9,14 @@ module mem_reg
         input [15:0]       i_address,
         input [7:0]        i_byte,
         input [3:0]        i_key,
+        input              i_spi_miso,
         output reg  [7:0]  o_byte = 8'h00,
         output wire [15:0] o_digit,
         output wire [3:0]  o_led,
-        output reg         o_ready = 1'b0
+        output reg         o_ready = 1'b0,
+        output wire        o_spi_mosi,
+        output wire        o_spi_sck,
+        output wire        o_spi_ss
 );
 
 localparam dev_REG      = 1'b0;
@@ -26,17 +30,22 @@ localparam mem_PROCESS  = 4'd1;
 localparam mem_MEMORY   = 4'd2;
 localparam mem_REG      = 4'd3;
 localparam mem_NOTIFY   = 4'd4;
+localparam mem_MEMWAIT  = 4'd5;
 
 reg [3:0] fsm_memory    = mem_IDLE;
 
+/* Digit registers */
 reg [15:0] digit = 16'd0;
-assign o_digit = digit;
+assign o_digit   = digit;
 
-reg [3:0] led = 8'd0;
-assign o_led = ~led;
+/* Led registers */
+reg [3:0] led    = 4'd0;
+assign o_led     = ~led;
 
+/* Key */
 wire [3:0] key;
 
+/* Mode */
 reg dev            = dev_REG;
 reg mode           = mode_READ;
 reg [15:0] address = BASE_ADDRESS;
@@ -44,7 +53,14 @@ reg [7:0] byte     = 8'b0;
 
 reg apulse_old = 1'b0;
 
-reg [7:0] memory[0:255];
+/* MMC necessities */
+reg [15:0] mmc_address = 16'd0;
+reg mmc_rw = 1'b0;
+wire [7:0] mmc_out;
+reg [7:0] mmc_in;
+
+reg mmc_on = 1'b0;
+wire mmc_done;
 
 always @(posedge i_sys_clk)
 begin
@@ -77,15 +93,21 @@ begin
         end
         mem_MEMORY:
         begin
-                if (i_rw == mode_READ)
+                mmc_address <= address - BASE_ADDRESS;
+                mmc_rw <= i_rw;
+                mmc_in <= i_byte;
+                mmc_on <= ~mmc_on;
+
+                fsm_memory <= mem_MEMWAIT;
+        end
+        mem_MEMWAIT:
+        begin
+                if (mmc_done == 1'b1)
                 begin
-                        o_byte <= memory[address - BASE_ADDRESS];
+                        if (!i_rw)
+                                o_byte <= mmc_out;
+                        fsm_memory <= mem_NOTIFY;
                 end
-                else
-                begin
-                        memory[address - BASE_ADDRESS] <= i_byte;
-                end
-                fsm_memory <= mem_NOTIFY;
         end
         mem_REG:
         begin
@@ -156,5 +178,18 @@ chatter_button key4(
         .i_sys_clk(i_sys_clk),
         .i_key(i_key[3]),
         .o_signal(key[3]));
+
+mmc_driver sd_driver(
+        .i_sys_clk(i_sys_clk),
+        .i_address(mmc_address),
+        .i_in(mmc_in),
+        .i_rw(mmc_rw),
+        .i_activate(mmc_on),
+        .i_spi_miso(i_spi_miso),
+        .o_out(mmc_out),
+        .o_spi_mosi(o_spi_mosi),
+        .o_spi_sck(o_spi_sck),
+        .o_spi_ss(o_spi_ss),
+        .o_done(mmc_done));
 
 endmodule

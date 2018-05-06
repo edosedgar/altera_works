@@ -27,3 +27,8 @@ set_location_assignment PIN_137 -to scathod[0]
 
 set_location_assignment PIN_114 -to UART_RX
 set_location_assignment PIN_115 -to UART_TX
+
+set_location_assignment PIN_72  -to SPI_MISO
+set_location_assignment PIN_74  -to SPI_SCK
+set_location_assignment PIN_76  -to SPI_MOSI
+set_location_assignment PIN_80  -to SPI_SS

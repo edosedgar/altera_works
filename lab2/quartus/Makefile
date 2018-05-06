@@ -20,7 +20,8 @@ BOARDFILE = AlteraDevPins
 # Setup your sources here
 SRCS = ../fpga/uart_receiver.v ../fpga/seven_seg.v \
        ../fpga/uart_main.v ../fpga/uart_transmitter.v ../fpga/crc16.v \
-       ../fpga/mem_reg.v ../fpga/chatter_button.v
+       ../fpga/mem_reg.v ../fpga/chatter_button.v ../fpga/mmc_driver.v \
+       ../fpga/spi_transceiver.v
 
 ###################################################################
 # Main Targets
