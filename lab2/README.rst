@@ -26,11 +26,8 @@ The terminal proccesses the following commands:
 The registers set to be accessed is quite small::
 
   BASE ADDRESS + 0x0000 => LED[7:0]
-
   BASE ADDRESS + 0x0001 => DISP[15:8]
-
   BASE ADDRESS + 0x0002 => DISP[7:0]
-
   BASE ADDRESS + 0x0003 => Button[3:0]
 
 The range of address to be covered is calculated in the following way::
@@ -43,13 +40,9 @@ Examples
 Default settings::
 
   BASE ADDRESS: 0x4900
-
   CRC16 Polynomial: 0x1021
-
   Initial CRC16 value: 0xFFFF
-
   Final CRC16 Xor value: 0x0000
-
   Input and result are not reflected
 
 * To read one byte from MMC memory::
