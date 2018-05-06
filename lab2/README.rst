@@ -1,16 +1,16 @@
-#Peripheral terminal
-~~~~~~~~~~~~~~~~~~~~~
+Peripheral terminal description
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This Verilog project implements basic protocol to communicate with
 the FPGA over UART interface.
 
-Request:
+**Request**:
 
   [Command][Length][Base address][Payload][CRC-16]
 
 Payload is transmitted if **command** is not read-based
 
-Answer:
+**Answer**:
 
   [Command][Length][Base address][Payload][CRC-16]
 
