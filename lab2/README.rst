@@ -1,21 +1,35 @@
-============================
- Altera Quartus II Makefile
-============================
+#Peripheral terminal
+~~~~~~~~~~~~~~~~~~~~~
 
-This can be used to compile your altera projects on the commandline,
-i.e. without the GUI.
+This Verilog project implements basic protocol to communicate with
+the FPGA over UART interface.
+
+Request: [Command][Length][Base address][Payload][CRC-16]
+Payload is transmitted if **command** is not read-based
+
+Answer: [Command][Length][Base address][Payload][CRC-16]
+Payload is transmitted if **command** is not write-based
+
+The terminal proccesses the following commands:
+
+* 0x00 - Write Payload To Registers
+* 0x80 - Read Payload from Registers
+* 0x01 - Write Payload To MMC Memory
+* 0x81 - Read Payload from MMC Memory
+
+The registers set is quite simple:
+  BASE ADDRESS + 0x0000 => LED[7:0]
+  BASE ADDRESS + 0x0001 => DISP[15:8]
+  BASE ADDRESS + 0x0002 => DISP[7:0]
+  BASE ADDRESS + 0x0003 => Button[3:0]
+
+To calculate the next address to be used it is required to calculate one
+according to the following rule:
+
+  ADDRESS = BASE ADDRESS + (0..Length)
 
 Usage
 ~~~~~~
-
-In order to use this to build your project, drop all your HDL code into fpga.
-Edit *quartus/Makefile* to suit your needs, most interesting variables there
-should be:
-
-* SRCS (your HDL code)
-* PROJECT (your projects name?)
-* TOP_LEVEL_ENTITY (your projects top level entity)
-* FAMILY, PART and BOARDFILE (for pin assignments, and part selection)
 
 Now you can create and build your project by::
 
