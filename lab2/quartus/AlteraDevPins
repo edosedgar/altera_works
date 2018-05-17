@@ -11,6 +11,7 @@ set_location_assignment PIN_89 -to key[1]
 set_location_assignment PIN_90 -to key[2]
 set_location_assignment PIN_91 -to key[3]
 
+# Seven segment display
 set_location_assignment PIN_128 -to ssegment[0]
 set_location_assignment PIN_121 -to ssegment[1]
 set_location_assignment PIN_125 -to ssegment[2]
@@ -25,10 +26,16 @@ set_location_assignment PIN_135 -to scathod[2]
 set_location_assignment PIN_136 -to scathod[1]
 set_location_assignment PIN_137 -to scathod[0]
 
+#UART pins
 set_location_assignment PIN_114 -to UART_RX
 set_location_assignment PIN_115 -to UART_TX
 
+#SPI pins
 set_location_assignment PIN_72  -to SPI_MISO
 set_location_assignment PIN_74  -to SPI_SCK
 set_location_assignment PIN_76  -to SPI_MOSI
 set_location_assignment PIN_80  -to SPI_SS
+
+#I2C pins
+set_location_assignment PIN_113 -to I2C_SDA
+set_location_assignment PIN_112 -to I2C_SCL
